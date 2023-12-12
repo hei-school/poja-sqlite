@@ -41,7 +41,7 @@ Resources:
       MemorySize: 512
       Role: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/execution/role-arn}}'
       FileSystemConfigs:
-        - Arn: 'arn:aws:iam::123456789012:user/johndoe'
+        - Arn: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/efs/access-point/arn}}'
           LocalMountPath: /mnt/efs
       Events:
         ApiCall:
@@ -57,7 +57,7 @@ Resources:
       MemorySize: 1024
       Role: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/execution/role-arn}}'
       FileSystemConfigs:
-        - Arn: 'arn:aws:iam::123456789012:user/johndoe'
+        - Arn: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/efs/access-point/arn}}'
           LocalMountPath: /mnt/efs
       Events:
         AllEvents:
