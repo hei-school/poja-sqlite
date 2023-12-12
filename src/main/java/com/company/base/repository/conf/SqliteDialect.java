@@ -1,5 +1,6 @@
 package com.company.base.repository.conf;
 
+import com.company.base.PojaGenerated;
 import java.sql.Types;
 import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.function.SQLFunctionTemplate;
@@ -12,6 +13,7 @@ import org.hibernate.type.StringType;
  * href="https://fullstackdeveloper.guru/2020/05/01/how-to-integrate-sqlite-database-with-spring-boot/">
  * Sqlite dialect </a>
  */
+@PojaGenerated
 public class SqliteDialect extends Dialect {
   public SqliteDialect() {
     registerColumnType(Types.BIT, "integer");
