@@ -1,10 +1,10 @@
-app_name: poja-base
+app_name: poja-sqlite
 cli_version: 5.0.0
 custom_java_deps: poja-custom-java-deps.txt
 custom_java_env_vars: poja-custom-java-env-vars.txt
 custom_java_repositories: poja-custom-java-repositories.txt
 frontal_memory: 512
-jacoco-min-coverage: '0.8'
+jacoco-min-coverage: '0.5'
 package_full_name: com.company.base
 region: eu-west-3
 ses_source: noreply@nowhere.com

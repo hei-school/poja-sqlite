@@ -1,12 +1,12 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: poja-base - Storage EFS
+Description: poja-sqlite - Storage EFS
 
 Parameters:
   Env:
     Type: String
   FilesystemName:
     Type: String
-    Default: poja-base-efs
+    Default: poja-sqlite-efs
 
 Resources:
   Filesystem:
@@ -19,7 +19,7 @@ Resources:
   FilesystemSSM:
     Type: AWS::SSM::Parameter
     Properties:
-      Name: !Join [ '', [ /poja-base/, !Ref Env, /efs/id ] ]
+      Name: !Join [ '', [ /poja-sqlite/, !Ref Env, /efs/id ] ]
       Type: String
       Value: !Ref Filesystem
 
