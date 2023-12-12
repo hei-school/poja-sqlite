@@ -23,7 +23,7 @@ Globals:
         AWS_SES_SOURCE: noreply@nowhere.com
         DRIVERCLASSNAME: org.sqlite.JDBC
         SPRING_JPA_DATABASEPLATFORM: com.company.base.repository.conf.SqliteDialect
-        DATABASE_URL: jdbc:sqlite:/tmp/sqlite-data:db?cache=shared
+        DATABASE_URL: jdbc:sqlite:/mnt/efs/sqlite-data:db?cache=shared
         DATABASE_USERNAME: sa
         DATABASE_PASSWORD: sa
         
@@ -40,6 +40,9 @@ Resources:
       Handler: com.company.base.ApiEventHandler::handleRequest
       MemorySize: 512
       Role: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/execution/role-arn}}'
+      FileSystemConfigs:
+        - Arn: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/efs/arn}}'
+          LocalMountPath: /mnt/efs
       Events:
         ApiCall:
           Type: Api
@@ -53,6 +56,9 @@ Resources:
       Handler: com.company.base.MailboxEventHandler::handleRequest
       MemorySize: 1024
       Role: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/execution/role-arn}}'
+      FileSystemConfigs:
+        - Arn: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/efs/arn}}'
+          LocalMountPath: /mnt/efs
       Events:
         AllEvents:
           Type: SQS
