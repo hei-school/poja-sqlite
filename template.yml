@@ -10,10 +10,13 @@ Globals:
     Architectures:
       - x86_64
     Timeout: 600
-    #AutoPublishAlias: live
-    #SnapStart:
-    #  ApplyOn: PublishedVersions
     
+    VpcConfig:
+      SecurityGroupIds:
+        - !Sub '{{resolve:ssm:/poja/sg/id}}'
+      SubnetIds:
+        - !Sub '{{resolve:ssm:/poja-sqlite/subnet/public1/id}}'
+        - !Sub '{{resolve:ssm:/poja-sqlite/subnet/public2/id}}'
     Environment:
       Variables:
         ENV: !Ref Env

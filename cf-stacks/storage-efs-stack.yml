@@ -37,6 +37,22 @@ Resources:
       Type: String
       Value: !GetAtt AccessPoint.Arn
 
+  MountTarget1:
+    Type: AWS::EFS::MountTarget
+    Properties:
+      FileSystemId: !Ref Filesystem
+      SubnetId: !Sub '{{resolve:ssm:/poja-sqlite/subnet/public1/id}}'
+      SecurityGroups:
+        - !Sub '{{resolve:ssm:/poja/sg/id}}'
+
+  MountTarget2:
+    Type: AWS::EFS::MountTarget
+    Properties:
+      FileSystemId: !Ref Filesystem
+      SubnetId: !Sub '{{resolve:ssm:/poja-sqlite/subnet/public2/id}}'
+      SecurityGroups:
+        - !Sub '{{resolve:ssm:/poja/sg/id}}'
+
 Outputs:
   AccessPointArnSSM:
     Value: !GetAtt AccessPointArnSSM.Value
