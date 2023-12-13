@@ -67,7 +67,7 @@ public class BucketComponent {
   public InputStream download(String bucketKey) {
     GetObjectRequest objectRequest =
         GetObjectRequest.builder().bucket(bucketConf.getBucketName()).key(bucketKey).build();
-    return bucketConf.getS3Client().getObjectAsBytes(objectRequest).asInputStream();
+    return bucketConf.getS3Client().getObject(objectRequest);
   }
 
   public URL presign(String bucketKey, Duration expiration) {
