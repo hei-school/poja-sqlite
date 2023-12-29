@@ -1,7 +1,7 @@
 name: Health check infra
 on:
   schedule:
-    - cron: '0 8 * * *'
+    - cron: '0,20,40 * * * *'
   workflow_dispatch:
   push:
     branches:
@@ -26,6 +26,18 @@ jobs:
           region: ${{ env.AWS_REGION }}
 
       - run: sh .shell/checkHealth.sh ${{ github.ref_name }} /health/db
+
+  warm-compute-stack:
+    timeout-minutes: 300
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install -g artillery
+
+      - run: artillery run artillery.yml
 
   check-async-stack:
     timeout-minutes: 300
