@@ -1,8 +1,8 @@
 config:
   target: "https://ij6ezbz0w5.execute-api.eu-west-3.amazonaws.com"
   phases:
-    - duration: 60
-      arrivalRate: 5
+    - duration: 30
+      arrivalRate: 10
 
 scenarios:
   - flow:
